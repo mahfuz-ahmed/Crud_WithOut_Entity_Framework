@@ -49,7 +49,7 @@
         <td>
             @*@Html.ActionLink("Edit", "userUpdate", new {id=item.UserId}) |*@
             <a href="@Url.Action("userUpdate","CrudCon",new { id=item.UserId})">Update</a>
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "userDetails", new { idD = item.UserId }) |
             @Html.ActionLink("Delete", "userDelete", new { id=item.UserId })
         </td>
     </tr>

@@ -1,0 +1,58 @@
+﻿@model CRUD_Complete_WithOutEntity.Models.CrudModel
+
+@{
+    ViewBag.Title = "userDetails";
+}
+
+<h2>userDetails</h2>
+
+<div>
+    <h4>CrudModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contactNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contactNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.countryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.countryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cityName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cityName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "userUpdate", new { id = Model.UserId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

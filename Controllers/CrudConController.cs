@@ -21,14 +21,15 @@ namespace CRUD_Complete_WithOutEntity.Controllers
             con = new SqlConnection(conStr);
         }
 
+
         // GET: CrudCon
         public ActionResult Index()
         {        
             return View();
         }
 
+        //Create User
         [HttpPost]
-
         public ActionResult InsertUser(CrudModel inModel)
         {
             connection();
@@ -45,8 +46,7 @@ namespace CRUD_Complete_WithOutEntity.Controllers
             return View("Index");
         }
 
-
-
+        //Select User
         [HttpGet]
         public ActionResult selectUser()
         {
@@ -71,7 +71,7 @@ namespace CRUD_Complete_WithOutEntity.Controllers
             return View(allList);
         }
 
-        //GET : UpdateUser/
+        //GET : UpdateUser
         [HttpGet]
         public ActionResult userUpdate(int id)
         {
@@ -96,16 +96,13 @@ namespace CRUD_Complete_WithOutEntity.Controllers
             else
             return RedirectToAction("selectUser");
         }
+
+        //UpdateUser
         [HttpPost]
         public ActionResult userUpdate(CrudModel rcvUpdt)
         {
             connection();
-            string query = @"UPDATE UserInformation
-                        SET userName = @userName
-                        , contactNumber = @contactNumber
-                         , countryName = @countryName
-                        , cityName = @cityName
-                         WHERE UserId = @UserId";
+            string query = @"UPDATE UserInformation SET userName = @userName, contactNumber = @contactNumber, countryName = @countryName, cityName = @cityName WHERE UserId = @UserId";
             using (SqlCommand cmd = new SqlCommand(query, con))
             {
                 con.Open();
@@ -119,6 +116,7 @@ namespace CRUD_Complete_WithOutEntity.Controllers
             return RedirectToAction("selectUser");
         }
 
+        //DeleteUser
         public ActionResult userDelete(int id)
         {
             connection();
@@ -132,6 +130,32 @@ namespace CRUD_Complete_WithOutEntity.Controllers
             }
 
             return RedirectToAction("selectUser");            
-        }    
+        }
+
+        //DetailsUser
+        [HttpGet]
+        public ActionResult userDetails( int idD)
+        {
+            connection();
+            CrudModel crdModel = new CrudModel();
+            DataTable dtTbl = new DataTable();
+            string quary = "select * from UserInformation where UserId = @UserId";
+            using (SqlDataAdapter sda = new SqlDataAdapter(quary, con))
+            {
+                sda.SelectCommand.Parameters.AddWithValue("@UserId", idD);
+                sda.Fill(dtTbl);
+            }
+            if (dtTbl.Rows.Count > 0)
+            {
+                crdModel.UserId = Convert.ToInt32(dtTbl.Rows[0][0].ToString());
+                crdModel.userName = dtTbl.Rows[0][1].ToString();
+                crdModel.contactNumber = dtTbl.Rows[0][2].ToString();
+                crdModel.countryName = dtTbl.Rows[0][3].ToString();
+                crdModel.cityName = dtTbl.Rows[0][4].ToString();
+                return View(crdModel);
+            }
+            else
+                return View();
+        }
     }
 }

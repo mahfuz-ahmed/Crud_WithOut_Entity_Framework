@@ -167,6 +167,7 @@
     <Content Include="Views\CrudCon\Index.cshtml" />
     <Content Include="Views\CrudCon\selectUser.cshtml" />
     <Content Include="Views\CrudCon\userUpdate.cshtml" />
+    <Content Include="Views\CrudCon\userDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

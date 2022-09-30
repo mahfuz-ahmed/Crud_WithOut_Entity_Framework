@@ -1,0 +1,58 @@
+﻿@model IEnumerable<CRUD_Complete_WithOutEntity.Models.CrudModel>
+
+@{
+    ViewBag.Title = "selectUser";
+}
+
+<h2>selectUser</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Index")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contactNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.countryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cityName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.userName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contactNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.countryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cityName)
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "userUpdate", new {id=item.UserId}) |*@
+            <a href="@Url.Action("userUpdate","CrudCon",new { id=item.UserId})">Update</a>
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "userDelete", new { id=item.UserId })
+        </td>
+    </tr>
+}
+
+</table>
